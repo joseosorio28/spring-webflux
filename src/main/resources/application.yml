@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: springwebflux-api
+  data:
+    mongodb:
+      authentication-database: admin
+      username: root
+      password: admin2022
+      database: webfluxtest
+      port: 27017
+      host: localhost
+  thymeleaf:
+    reactive:
+      max-chunk-size: 1024
+      chunked-mode-view-names:
+        - list-chunked
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+server:
+  port: 8980
+  servlet:
+    context-path: /springwebflux
+  errorResponse:
+    include-message: always
+    inlucde-binding-errors: always
+
+logging:
+  level:
+    com.pragma: DEBUG

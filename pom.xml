@@ -11,7 +11,7 @@
 	<groupId>com.pragma.springwebflux</groupId>
 	<artifactId>spring-webflux</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>springwebflux-demo</name>
 	<description>Demo project for Spring WebFlux</description>
 	<properties>
 		<java.version>11</java.version>
