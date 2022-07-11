@@ -22,26 +22,13 @@ public class ProductRestController {
     private IProductService productService;
 
     @GetMapping
-    public Flux<Product> index(){
-        return productService.findAll()
-                .map(product->{
-                    product.setName(product.getName().toUpperCase());
-                    return product;
-                })
+    public Flux<Product> index() {
+        return productService.findAllWithNameUppercase()
                 .doOnNext(product -> LOG.info(product.getName()));
     }
 
     @GetMapping("/{id}")
-    public Mono<Product> show(
-            @PathVariable String id
-    ){
-        return productService.findAll()
-                .filter(product -> product.getId().equals(id))
-                .next()
-                .map(product->{
-                    product.setName(product.getName().toUpperCase());
-                    return product;
-                })
-                .doOnNext(product -> LOG.info(product.getName()));
+    public Mono<Product> show(@PathVariable String id) {
+        return productService.findById(id);
     }
 }

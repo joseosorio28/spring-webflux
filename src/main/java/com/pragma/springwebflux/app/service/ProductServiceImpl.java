@@ -28,12 +28,28 @@ public class ProductServiceImpl implements IProductService{
 
     @Override
     public Flux<Product> findAllWithNameUppercase() {
-        return null;
+        return productRepository.findAll()
+                .map(product->{
+                    product.setName(product.getName().toUpperCase());
+                    return product;
+                });
+    }
+
+    @Override
+    public Flux<Product> findAllWithNameUppercaseRepeat() {
+        return findAllWithNameUppercase().repeat(5000);
     }
 
     @Override
     public Mono<Product> findById(String id) {
-        return productRepository.findById(id);
+        return productRepository.findAll()
+                .filter(product -> product.getId().equals(id))
+                .next()
+                .map(product->{
+                    product.setName(product.getName().toUpperCase());
+                    return product;
+                })
+                .doOnNext(product -> LOG.info(product.getName()));
     }
 
     @Override

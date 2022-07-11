@@ -8,6 +8,7 @@ public interface IProductService {
 
     Flux<Product> findAll();
     Flux<Product> findAllWithNameUppercase();
+    Flux<Product> findAllWithNameUppercaseRepeat();
     Mono<Product> findById(String id);
     Mono<Product> save(Product product);
     Mono<Void> delete(Product product);
